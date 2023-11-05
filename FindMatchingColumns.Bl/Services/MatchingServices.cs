@@ -12,11 +12,13 @@ namespace FindMatchingColumns.BL.Services
     public class MatchingServices : IMatchingServices
     {
         IDbConnection _db;
+        public string? FilePath { get; set; }
         public MatchingServices(string Connection) 
         {
             _db = new SqlConnection(Connection);
+        
         }
-        public string? FilePath { get; set; }
+     
         public List<string> GetColumnNamesOfPropertyInSpecificTable<T>(T propertyValue, string tableName)
         {
             string query = $"SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '{tableName}'";
@@ -160,6 +162,7 @@ namespace FindMatchingColumns.BL.Services
 
         }
 
+       
         public void WriteFooter(string tableName, string FilePath)
         {
             FileStream file = FileHelper.CreateOrAppendFileStream(FilePath, FileCreatingOptions.Append);

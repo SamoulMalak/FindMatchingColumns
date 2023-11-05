@@ -13,5 +13,7 @@ namespace FindMatchingColumns.BL.IServices
         void WriteResultInFile(List<string> result, string parameterName,object value, string pathFile);
         void WriteHeader(string tableName, string FilePath);
         void WriteFooter(string tableName, string FilePath);
+        public string? FilePath { get; set; }
+
     }
 }
